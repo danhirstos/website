@@ -4,16 +4,19 @@ const config = {
     extend: {
       colors: {
         primary: {
-          100: "#f6dfea",
-          200: "#f0c0d5",
-          300: "#eebad1",
-          400: "#e07ca9",
-          500: "#c4005a",
-          600: "#b20052"
+          100: "#F0A202",
+          200: "#F18805",
+          300: "#D95D39",
+          400: "#a64c7c",
+          500: "#843B62",
+          600: "#5d2a45"
         }
       },
     },
   },
+  plugins: [
+    require("@tailwindcss/typography"),
+  ]
 
 };
 
