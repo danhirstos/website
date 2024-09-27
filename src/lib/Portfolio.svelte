@@ -18,7 +18,7 @@
         {
             title: "Pret Crawl",
             desc: "Website that plans a pub crawl between Prets in London. Made to learn Svelte.",
-            link: "https://www.pretcrawl.com",
+            link: "https://pretcrawl.danhirst.me",
             tags: ["svelte", "geospatial", "website", "personal"]
         },
         {
