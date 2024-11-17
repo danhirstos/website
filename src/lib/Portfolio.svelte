@@ -1,13 +1,20 @@
 <script>
-  import PortfolioSection from "./PortfolioSection.svelte";
-  import {clickOutside} from './js/clickOutside.js';
+    import PortfolioSection from "./PortfolioSection.svelte";
+    import {clickOutside} from './js/clickOutside.js';
 
 
-  const code = [{
+    const code = [
+        {
             title: "osdatahub Python",
             desc: "Open source Python package for the OS Data Hub API.",
             link: "https://github.com/OrdnanceSurvey/osdatahub",
             tags: ["python", "geospatial", "package", "work"]
+        },
+        {
+            title: "Quadkey Navigator",
+            desc: "Tool for visualising and manipulating quadkeys.",
+            link: "https://quadkey.danhirst.me/",
+            tags: ["svelte", "geospatial", "website", "personal"]
         },
         {
             title: "osdatahub JavaScript",
@@ -52,10 +59,10 @@
             tags: ["svelte", "geospatial", "website", "work"]
         },
         {
-          title: "Pret Share",
-          desc: "Small web app that helps you share a Pret Subscription. Made to learn Firebase.",
-          link: "https://pret-share.web.app/",
-          tags: ["svelte", "firebase", "website", "personal"]
+            title: "Pret Share",
+            desc: "Small web app that helps you share a Pret Subscription. Made to learn Firebase.",
+            link: "https://pret-share.web.app/",
+            tags: ["svelte", "firebase", "website", "personal"]
         }
 
     ]
@@ -84,7 +91,7 @@
             desc: "ArcGIS StoryMap about using EO to monitor peatlands, presented at COP26.",
             link: "https://storymaps.arcgis.com/stories/68ac541504fc4714b371b1a33e540c95",
             tags: ["geospatial", "eo", "work"]
-          },
+        },
         {
             title: "London's Blue Plaques",
             desc: "Spatial analysis of London's Blue Plaques.",
@@ -121,32 +128,32 @@
 
         }
     ]
-      
-    let tags = [...code, ...blogs, ...other] 
-          .map(x => x.tags)
-          .flat();
-      let unique_tags = [...new Set(tags)];
 
-      let active_tag = "";
-  
-      function set_active_tag(event) {
+    let tags = [...code, ...blogs, ...other]
+        .map(x => x.tags)
+        .flat();
+    let unique_tags = [...new Set(tags)];
+
+    let active_tag = "";
+
+    function set_active_tag(event) {
         let tag_id = event.target.id;
         if (active_tag == tag_id) {
-          active_tag = "";
+            active_tag = "";
         } else {
-          active_tag = tag_id;
+            active_tag = tag_id;
         }
-      }
+    }
 
 </script>
 
-<div use:clickOutside on:click_outside={() => { active_tag = ""}} class="mb-5">
-  {#each unique_tags as tag}
-  <button on:click={set_active_tag} id="{tag}" class="inline-block m-1">{tag}</button>
-  {/each}
+<div class="mb-5" on:click_outside={() => { active_tag = ""}} use:clickOutside>
+    {#each unique_tags as tag}
+        <button on:click={set_active_tag} id="{tag}" class="inline-block m-1">{tag}</button>
+    {/each}
 </div>
 
 
-<PortfolioSection title="Code" content="{code}" active_tag="{active_tag}"></PortfolioSection>
-<PortfolioSection title="Blogs" content="{blogs}" active_tag="{active_tag}"></PortfolioSection>
-<PortfolioSection title="Other" content="{other}" active_tag="{active_tag}"></PortfolioSection>
+<PortfolioSection active_tag="{active_tag}" content="{code}" title="Code"></PortfolioSection>
+<PortfolioSection active_tag="{active_tag}" content="{blogs}" title="Blogs"></PortfolioSection>
+<PortfolioSection active_tag="{active_tag}" content="{other}" title="Other"></PortfolioSection>
